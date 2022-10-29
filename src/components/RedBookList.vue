@@ -21,11 +21,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Book } from "@/models/book";
+import { RedBook } from "@/models/book";
 @Component
 export default class BookList extends Vue {
   @Prop()
-  private bookList!: Array<Book>;
+  private bookList!: Array<RedBook>;
   private headers = [
     {
       text: "ISBN",
@@ -35,6 +35,8 @@ export default class BookList extends Vue {
     { text: "書籍名", value: "title" },
     { text: "著者", value: "author" },
     { text: "出版社", value: "publisher" },
+    { text: "感想", value: "impression" },
+    { text: "最後に読まれた日", value: "date" },
   ];
 }
 </script>

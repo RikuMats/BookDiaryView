@@ -9,10 +9,10 @@ export class Book {
 
 export class RedBook extends Book {
   constructor(
+    ISBN: string,
     title: string,
     author: string,
     publisher: string,
-    ISBN: string,
     private impression: string,
     private date: Date
   ) {

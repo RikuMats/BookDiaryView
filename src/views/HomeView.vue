@@ -1,18 +1,35 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-  </div>
+  <RedBookList :bookList="bookList" />
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { Vue, Component } from "vue-property-decorator";
+import RedBookList from "../components/BookList.vue";
+import { RedBook } from "../models/book";
 
 @Component({
   components: {
-    HelloWorld,
+    RedBookList,
   },
 })
-export default class HomeView extends Vue {}
+export default class HomeView extends Vue {
+  private bookList!: Array<RedBook>;
+
+  public created() {
+    let l: Array<RedBook> = new Array<RedBook>();
+    for (let i = 0; i < 10; ++i) {
+      l.push(
+        new RedBook(
+          i.toString(),
+          "title" + i.toString(),
+          "author" + i.toString(),
+          "publisher" + i.toString(),
+          "impression" + i.toString(),
+          new Date()
+        )
+      );
+    }
+    this.bookList = l;
+  }
+}
 </script>
