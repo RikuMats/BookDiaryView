@@ -42,13 +42,15 @@ export default class SignIn extends Vue {
   ];
 
   signIn() {
-    //サーバーにuserId とパスワード
-    let isVerified = true;
-    if (isVerified) {
-      this.$router.push({
-        name: "userHome",
-        params: { id: this.userId },
-      });
+    if (this.valid) {
+      //サーバーにuserId とパスワード
+      let isVerified = true;
+      if (isVerified) {
+        this.$router.push({
+          name: "userHome",
+          params: { id: this.userId },
+        });
+      }
     }
   }
 }
