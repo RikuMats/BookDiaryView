@@ -25,6 +25,17 @@ const routes: Array<RouteConfig> = [
     component: () => import("../views/UserHomeView.vue"),
     props: true,
   },
+  {
+    path: "/signUp",
+    name: "signUp",
+    component: () => import("../views/SignUpView.vue"),
+  },
+  {
+    path: "/verification/:id",
+    name: "verification",
+    component: () => import("../views/VerificationView.vue"),
+    props: true,
+  },
 ];
 
 const router = new VueRouter({

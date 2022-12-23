@@ -2,6 +2,7 @@
   <v-container>
     <SignIn></SignIn>
     <!-- <RedBookList :bookList="bookList" /> -->
+    <router-link to="/signUp"> sign up </router-link>
   </v-container>
 </template>
 

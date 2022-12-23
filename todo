@@ -1,1 +1,10 @@
-- Sign up コンポーネントからUserHomeViewへ飛ぶ部分を作成中
+## doing
+- signUp -> verification
+## todo
+- page transition
+  - sign up -> verification -> ok -> home
+- component layout
+
+## done
+- Sign in コンポーネントからUserHomeViewへ飛ぶ部分を作成
+- home -> sign up
