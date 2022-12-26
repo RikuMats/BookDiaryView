@@ -3,7 +3,8 @@ export class Book {
     private title: string,
     private author: string,
     private publisher: string,
-    private ISBN: string
+    private ISBN: string,
+    private img_url: string
   ) {}
 }
 
@@ -13,9 +14,10 @@ export class RedBook extends Book {
     title: string,
     author: string,
     publisher: string,
+    img_url: string,
     private impression: string,
     private date: Date
   ) {
-    super(title, author, publisher, ISBN);
+    super(title, author, publisher, ISBN, img_url);
   }
 }

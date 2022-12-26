@@ -21,6 +21,8 @@
           <v-btn @click="signIn">ログイン</v-btn>
         </v-card-actions>
       </v-form>
+      初めての方
+      <router-link to="/signUp"> sign up </router-link>
     </v-card-text>
   </v-card>
 </template>

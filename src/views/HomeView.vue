@@ -1,42 +1,50 @@
 <template>
   <v-container>
     <SignIn></SignIn>
-    <!-- <RedBookList :bookList="bookList" /> -->
-    <router-link to="/signUp"> sign up </router-link>
+    <BookList :bookList="bookList" />
   </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import RedBookList from "../components/BookList.vue";
+import BookList from "../components/BookList.vue";
 import SignIn from "../components/SignIn.vue";
-import { RedBook } from "../models/book";
+import { RedBook, Book } from "../models/book";
 
 @Component({
   components: {
-    RedBookList,
+    BookList,
     SignIn,
   },
 })
 export default class HomeView extends Vue {
-  private bookList!: Array<RedBook>;
+  private bookList!: Array<Book>;
 
   public created() {
     //最近読まれた本をサーバーから取得
-    let l: Array<RedBook> = new Array<RedBook>();
-    for (let i = 0; i < 10; ++i) {
-      l.push(
-        new RedBook(
-          i.toString(),
-          "title" + i.toString(),
-          "author" + i.toString(),
-          "publisher" + i.toString(),
-          "impression" + i.toString(),
-          new Date()
-        )
-      );
-    }
-    this.bookList = l;
+    this.bookList = [
+      new Book(
+        "ikarosu",
+        "ikeido jun",
+        "bunshun",
+        "isbn1",
+        "http://books.google.com/books/content?id=09bcoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
+      ),
+      new Book(
+        "ikarosu",
+        "ikeido jun",
+        "bunshun",
+        "isbn1",
+        "http://books.google.com/books/content?id=09bcoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
+      ),
+      new Book(
+        "ikarosu",
+        "ikeido jun",
+        "bunshun",
+        "isbn1",
+        "http://books.google.com/books/content?id=09bcoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
+      ),
+    ];
   }
 }
 </script>
