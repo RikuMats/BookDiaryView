@@ -4,7 +4,6 @@
     :items="bookList"
     :items-per-page="5"
     class="elevation-1 my-3 mx-auto"
-    style="width: 1000px"
   >
     <!-- サムネイル -->
     <template v-slot:[`item.img_url`]="{ item }">
