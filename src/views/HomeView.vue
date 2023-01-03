@@ -2,18 +2,21 @@
   <v-container>
     <SignIn></SignIn>
     <RedBookList :bookList="bookList" />
+    <SearchBook />
   </v-container>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import RedBookList from "../components/RedBookList.vue";
+import SearchBook from "../components/SearchBook.vue";
 import SignIn from "../components/SignIn.vue";
 import { RedBook } from "../models/book";
 
 @Component({
   components: {
     RedBookList,
+    SearchBook,
     SignIn,
   },
 })
@@ -24,18 +27,21 @@ export default class HomeView extends Vue {
     //最近読まれた本をサーバーから取得
     this.bookList = [
       new RedBook(
+        "isbn1",
         "ikarosu",
         "ikeido jun",
         "http://books.google.com/books/content?id=09bcoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
         "that's fun"
       ),
       new RedBook(
+        "isbn1",
         "ikarosu",
         "ikeido jun",
         "http://books.google.com/books/content?id=09bcoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
         "that's fun"
       ),
       new RedBook(
+        "isbn1",
         "ikarosu",
         "ikeido jun",
         "http://books.google.com/books/content?id=09bcoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",

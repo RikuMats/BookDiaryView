@@ -4,6 +4,7 @@
     :items="bookList"
     :items-per-page="5"
     class="elevation-1 my-3 mx-auto"
+    hide-default-footer
   >
     <!-- サムネイル -->
     <template v-slot:[`item.img_url`]="{ item }">
@@ -48,22 +49,5 @@ export default class BookList extends Vue {
       width: "40%",
     },
   ];
-  private image_url = "";
-  //for test
-  created() {
-    console.log(this.bookList);
-    // let request = new XMLHttpRequest();
-    // let url =
-    //   "https://www.googleapis.com/books/v1/volumes?q=inauthor:池井戸潤+intitle:銀翼のイカロス+inpublisher:ダイヤモンド社";
-    // request.open("GET", url, true);
-    // request.onload = function () {
-    //   let data = this.response;
-    //   data[1];
-    // };
-    // let bookList = [
-    //   new Book("ikarosu", "ikeido jun", "bunshun", "isbn1"),
-    //   new Book("neko", "natsume sousaku", "iwanami", "isbn2"),
-    // ];
-  }
 }
 </script>

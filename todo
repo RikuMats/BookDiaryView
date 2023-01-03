@@ -1,7 +1,8 @@
 ## doing
-- book list component
-- images in book list 
- 
+- register new book
+- bookListにaddボタンとポップアップでsearchBookコンポーネントを置く
+- bookListにチェックマークのボタン追加して感想を書けるように
+- red book
 ## todo
 - component layout
 - google book api
@@ -11,3 +12,5 @@
 - Sign in コンポーネントからUserHomeViewへ飛ぶ部分を作成
 - home -> sign up
 - page transition
+- book list component
+- images in book list 

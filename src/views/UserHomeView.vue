@@ -36,16 +36,19 @@ export default class HomeView extends Vue {
     console.log(this.userName);
     this.bookList = [
       new Book(
+        "isbn1",
         "ikarosu",
         "ikeido jun",
         "http://books.google.com/books/content?id=09bcoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
       ),
       new Book(
+        "isbn1",
         "ikarosu",
         "ikeido jun",
         "http://books.google.com/books/content?id=09bcoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
       ),
       new Book(
+        "isbn1",
         "ikarosu",
         "ikeido jun",
         "http://books.google.com/books/content?id=09bcoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
@@ -53,18 +56,21 @@ export default class HomeView extends Vue {
     ];
     this.redBookList = [
       new RedBook(
+        "isbn1",
         "ikarosu",
         "ikeido jun",
         "http://books.google.com/books/content?id=09bcoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
         "that's fun"
       ),
       new RedBook(
+        "isbn1",
         "ikarosu",
         "ikeido jun",
         "http://books.google.com/books/content?id=09bcoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
         "that's fun"
       ),
       new RedBook(
+        "isbn1",
         "ikarosu",
         "ikeido jun",
         "http://books.google.com/books/content?id=09bcoQEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
