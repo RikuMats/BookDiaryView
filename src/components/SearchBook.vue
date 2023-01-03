@@ -3,10 +3,16 @@
     <v-row>
       <v-col>
         <v-text-field v-model="title" label="title"></v-text-field>
-        <v-text-field v-model="author" label="author"></v-text-field>
-        <v-btn @click="search()"><v-icon>mdi-magnify</v-icon></v-btn>
-        <BookList :bookList="resultList" v-if="isSearching"></BookList>
       </v-col>
+      <v-col>
+        <v-text-field v-model="author" label="author"></v-text-field>
+      </v-col>
+      <v-col>
+        <v-btn @click="search()"><v-icon>mdi-magnify</v-icon></v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <BookList :bookList="resultList" v-if="isSearching"></BookList>
     </v-row>
   </v-container>
 </template>
@@ -29,7 +35,9 @@ export default class SearchBook extends Vue {
     //apiからデータ取得
     //forで順次配列に格納
     //isSearching
-    let url = `https://www.googleapis.com/books/v1/volumes?q=inauthor:${this.author}+intitle:${this.title}`;
+    let url = `https://www.googleapis.com/books/v1/volumes?q=inauthor:${
+      this.author
+    }${this.title === "" ? "" : "+intitle:" + this.title}`;
     fetch(url)
       .then((res) => res.json())
       .then((apiData) => {
