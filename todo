@@ -1,7 +1,9 @@
 ## doing
 - register new book
+- data-tableが再描画されない！！！！！！！！
 - bookListにaddボタンとポップアップでsearchBookコンポーネントを置く
 - bookListにチェックマークのボタン追加して感想を書けるように
+- searchBookの中でアイコンを押すとその本の情報を元の画面に送出してポップアップを閉じるように
 - red book
 ## todo
 - component layout

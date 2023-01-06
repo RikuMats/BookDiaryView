@@ -6,6 +6,12 @@
     class="elevation-1 my-3 mx-auto"
     hide-default-footer
   >
+    <template v-slot:top>
+      <v-toolbar flat>
+        <v-toolbar-title>Red Book </v-toolbar-title>
+      </v-toolbar>
+    </template>
+
     <!-- サムネイル -->
     <template v-slot:[`item.img_url`]="{ item }">
       <v-img
