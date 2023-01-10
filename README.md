@@ -1,4 +1,4 @@
-# book_dialy_view
+# book_diary_view
 
 ## Project setup
 ```
@@ -22,3 +22,4 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
