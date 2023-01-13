@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <SignUp></SignUp>
-    <!-- <RedBookList :bookList="bookList" /> -->
   </v-container>
 </template>
 

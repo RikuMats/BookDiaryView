@@ -16,7 +16,7 @@
     <template v-slot:[`item.img_url`]="{ item }">
       <v-img
         :src="item.img_url"
-        :aspect-ratop="3 / 4"
+        :aspect-ratio="3 / 4"
         height="12vw"
         min-height="120px"
         width="9vw"

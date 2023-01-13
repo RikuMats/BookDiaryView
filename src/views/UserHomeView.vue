@@ -41,7 +41,7 @@ export default class HomeView extends Vue {
   private bookListKey = 0;
   private redBookListKey = 0;
   fetchUserData() {
-    //name, books,...
+    //サーバにidを送り名前、未読の本、感想を書いた本を取得想定
     this.userName = "name";
     this.bookList = [
       new Book(
@@ -81,17 +81,21 @@ export default class HomeView extends Vue {
     ];
   }
   created() {
+    //画面作成時にデータ取得
     this.fetchUserData();
   }
   redBook(redBook: RedBook) {
+    //感想が書かれたときに呼び出す
     this.redBookList.push(redBook);
     this.bookList = this.bookList.filter((v) => {
       return v.isbn !== redBook.isbn;
     });
+    //強制的に再描画させるための処理（非推奨なためできれば修正）
     this.redBookListKey += 1;
     this.bookListKey += 1;
   }
   addBook(book: Book) {
+    //本を検索して決定した時に呼び出し
     if (
       this.bookList.filter((v) => {
         v.isbn === book.isbn;

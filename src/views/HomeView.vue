@@ -19,10 +19,9 @@ import { RedBook } from "../models/book";
 })
 export default class HomeView extends Vue {
   private bookList!: Array<RedBook>;
-  private newBookDialog = false;
-
   public created() {
-    //最近読まれた本をサーバーから取得
+    //最近読まれた本をサーバーから取得想定
+    //サンプルデータ
     this.bookList = [
       new RedBook(
         "9784198942304",

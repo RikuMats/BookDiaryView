@@ -4,7 +4,6 @@
     :items="bookList"
     :items-per-page="10"
     class="elevation-1 my-3 mx-auto"
-    :key="updateKey"
   >
     <!-- header  -->
     <template v-slot:top>
@@ -78,7 +77,6 @@ import { Book, RedBook } from "@/models/book";
 export default class BookList extends Vue {
   private newBookDialog = false;
   private impressionWritingDialog = false;
-  private updateKey = 1;
   private impression = "";
   private redBook!: RedBook;
   @Prop()
@@ -111,9 +109,7 @@ export default class BookList extends Vue {
 
   addBook(book: Book) {
     this.newBookDialog = false;
-    //this.bookList.push(book);
     this.$emit("add-book", book);
-    //this.updateKey += 1;
   }
   writeImpression(book: Book) {
     this.impressionWritingDialog = true;
@@ -122,8 +118,6 @@ export default class BookList extends Vue {
   save() {
     this.impressionWritingDialog = false;
     this.redBook.writeImpression(this.impression);
-    console.log("red!");
-    console.log(this.redBook);
     this.$emit("red-book", this.redBook);
   }
 }
