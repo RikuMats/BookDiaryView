@@ -21,7 +21,6 @@ export default class HomeView extends Vue {
   private bookList: Array<RedBook> = [];
   public created() {
     //最近読まれた本をサーバーから取得想定
-    //サンプルデータ
     fetch("http://localhost:8080/fetchRedBooks.php")
       .then((response) => {
         if (!response.ok) {
@@ -45,6 +44,7 @@ export default class HomeView extends Vue {
           this.bookList.push(book);
         }
       });
+    //サンプルデータ
     // this.bookList = [
     //   new RedBook(
     //     "9784198942304",

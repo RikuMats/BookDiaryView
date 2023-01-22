@@ -44,17 +44,46 @@ export default class SignIn extends Vue {
   ];
 
   signIn() {
+    let isVerified = false;
+    let token = "token";
+    let sendData = {
+      password: this.password,
+      userId: this.userId,
+    };
     if (this.valid) {
       //サーバーにuserId とパスワード
-      // 受け取ったトークンの保存↓vuex勉強したらそれ使う？
-      // https://engineering.webstudio168.jp/2022/04/javascript-session/
-      let isVerified = true;
-      if (isVerified) {
-        this.$router.push({
-          name: "userHome",
-          params: { id: this.userId },
+      fetch("http://localhost:8080/signIn.php", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams(sendData).toString(),
+      })
+        .then((response) => {
+          console.log(response);
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          return response.json();
+        })
+        .catch((error) => {
+          console.error("エラーが発生しました", error);
+        })
+        .then((apiData) => {
+          isVerified = apiData["isVerified"];
+          token = apiData["token"];
+          console.log(token);
+          // 受け取ったトークンの保存↓vuex勉強したらそれ使う？
+          // https://engineering.webstudio168.jp/2022/04/javascript-session/
+          window.sessionStorage.setItem("token", token);
+          if (isVerified) {
+            this.$router.push({
+              name: "userHome",
+              params: { id: this.userId },
+            });
+          }
         });
-      }
     }
   }
 }
