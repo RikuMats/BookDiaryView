@@ -46,6 +46,8 @@ export default class SignIn extends Vue {
   signIn() {
     if (this.valid) {
       //サーバーにuserId とパスワード
+      // 受け取ったトークンの保存↓vuex勉強したらそれ使う？
+      // https://engineering.webstudio168.jp/2022/04/javascript-session/
       let isVerified = true;
       if (isVerified) {
         this.$router.push({
