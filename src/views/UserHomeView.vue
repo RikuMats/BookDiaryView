@@ -35,50 +35,45 @@ import { Book, RedBook } from "@/models/book";
 export default class HomeView extends Vue {
   @Prop()
   private id!: string;
-  private userName!: string;
-  private bookList!: Array<Book>;
-  private redBookList!: Array<Book>;
+  private userName = "";
+  private bookList: Array<Book> = [];
+  private redBookList: Array<Book> = [];
   private bookListKey = 0;
   private redBookListKey = 0;
   fetchUserData() {
-    //サーバにidを送り名前、未読の本、感想を書いた本を取得想定
-    this.userName = "name";
-    this.bookList = [
-      new Book(
-        "9784041117170",
-        "民王シベリアの陰謀",
-        "池井戸潤",
-        "http://books.google.com/books/content?id=5IGKzgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-      ),
-      new Book(
-        "9784122064492",
-        "花咲舞が黙ってない",
-        "池井戸潤",
-        "http://books.google.com/books/content?id=F-2CswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-      ),
-      new Book(
-        "9784087716191",
-        "陸王",
-        "池井戸潤",
-        "http://books.google.com/books/content?id=5y2DvgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-      ),
-    ];
-    this.redBookList = [
-      new RedBook(
-        "9784198942304",
-        "アキラとあきら",
-        "池井戸潤",
-        "http://books.google.com/books/content?id=jo75swEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-        "that's interesting"
-      ),
-      new RedBook(
-        "9784167110116",
-        "手紙",
-        "東野圭吾",
-        "http://books.google.com/books/content?id=_XH4PgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
-        "that's fun"
-      ),
-    ];
+    let token = window.sessionStorage.getItem("token");
+    let sendData = {
+      userId: this.id,
+      token: token,
+    };
+    let isVerified = false;
+    fetch("http://localhost:8080/fetchUserData.php", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams(sendData).toString(),
+    })
+      .then((response) => {
+        console.log(response);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error("エラーが発生しました", error);
+      })
+      .then((apiData) => {
+        console.log(apiData);
+        isVerified = apiData["isVerified"];
+        if (isVerified) {
+          this.userName = apiData["userName"];
+          this.bookList = apiData["books"];
+          this.redBookList = apiData["redBooks"];
+        }
+      });
   }
   created() {
     //画面作成時にデータ取得

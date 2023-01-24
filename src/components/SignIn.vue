@@ -71,6 +71,7 @@ export default class SignIn extends Vue {
           console.error("エラーが発生しました", error);
         })
         .then((apiData) => {
+          console.log(apiData);
           isVerified = apiData["isVerified"];
           token = apiData["token"];
           console.log(token);
