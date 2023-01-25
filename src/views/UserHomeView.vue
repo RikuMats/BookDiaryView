@@ -91,6 +91,8 @@ export default class HomeView extends Vue {
   }
   addBook(book: Book) {
     //本を検索して決定した時に呼び出し
+    //すでにあったら追加しない
+    if (this.bookList.some((b) => b.isbn == book.isbn)) return;
     let token = window.sessionStorage.getItem("token");
     let sendData = {
       userId: this.id,
@@ -119,20 +121,14 @@ export default class HomeView extends Vue {
       .then((apiData) => {
         console.log(apiData);
         isVerified = apiData["isVerified"];
-        if (!isVerified) {
+        if (isVerified) {
+          this.bookList.push(book);
+          this.bookListKey += 1;
+        } else {
           //エラーしたら処理中止するフィードバック考える
           return;
         }
       });
-
-    if (
-      this.bookList.filter((v) => {
-        v.isbn === book.isbn;
-      }).length == 0
-    ) {
-      this.bookList.push(book);
-    }
-    this.bookListKey += 1;
   }
 }
 </script>
