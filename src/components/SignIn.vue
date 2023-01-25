@@ -56,9 +56,9 @@ export default class SignIn extends Vue {
         method: "POST",
         mode: "cors",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
         },
-        body: new URLSearchParams(sendData).toString(),
+        body: JSON.stringify(sendData),
       })
         .then((response) => {
           console.log(response);

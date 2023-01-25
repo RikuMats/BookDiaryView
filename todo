@@ -1,11 +1,9 @@
 ## doing
 - register new book
-- data-tableが再描画されない！！！！！！！！
-- bookListにaddボタンとポップアップでsearchBookコンポーネントを置く
-- bookListにチェックマークのボタン追加して感想を書けるように
-- searchBookの中でアイコンを押すとその本の情報を元の画面に送出してポップアップを閉じるように
+閉じるように
 - red book
 ## todo
+- add bookでデータベースにうまくくわえられなかったときのフィードバックを考える
 - component layout
 - google book api
   - [javascript fetch](https://www.azukipan.com/posts/javascript-api-fetch/)

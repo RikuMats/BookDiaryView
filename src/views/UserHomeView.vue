@@ -51,9 +51,9 @@ export default class HomeView extends Vue {
       method: "POST",
       mode: "cors",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
       },
-      body: new URLSearchParams(sendData).toString(),
+      body: JSON.stringify(sendData),
     })
       .then((response) => {
         console.log(response);
@@ -91,6 +91,40 @@ export default class HomeView extends Vue {
   }
   addBook(book: Book) {
     //本を検索して決定した時に呼び出し
+    let token = window.sessionStorage.getItem("token");
+    let sendData = {
+      userId: this.id,
+      token: token,
+      newBook: book,
+    };
+    let isVerified = false;
+    fetch("http://localhost:8080/addBook.php", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sendData),
+    })
+      .then((response) => {
+        console.log(response);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error("エラーが発生しました", error);
+      })
+      .then((apiData) => {
+        console.log(apiData);
+        isVerified = apiData["isVerified"];
+        if (!isVerified) {
+          //エラーしたら処理中止するフィードバック考える
+          return;
+        }
+      });
+
     if (
       this.bookList.filter((v) => {
         v.isbn === book.isbn;
