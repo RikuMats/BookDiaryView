@@ -81,13 +81,48 @@ export default class HomeView extends Vue {
   }
   redBook(redBook: RedBook) {
     //感想が書かれたときに呼び出す
-    this.redBookList.push(redBook);
-    this.bookList = this.bookList.filter((v) => {
-      return v.isbn !== redBook.isbn;
-    });
-    //強制的に再描画させるための処理（非推奨なためできれば修正）
-    this.redBookListKey += 1;
-    this.bookListKey += 1;
+    let token = window.sessionStorage.getItem("token");
+    let sendData = {
+      userId: this.id,
+      token: token,
+      isbn: redBook.isbn,
+      impression: redBook.impression,
+    };
+    let isVerified = false;
+    fetch("http://localhost:8080/resistImpression.php", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sendData),
+    })
+      .then((response) => {
+        console.log(response);
+        if (!response.ok) {
+          throw new Error(response.statusText);
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        console.error("エラーが発生しました", error);
+      })
+      .then((apiData) => {
+        console.log(apiData);
+        isVerified = apiData["isVerified"];
+        if (isVerified) {
+          this.redBookList.push(redBook);
+          this.bookList = this.bookList.filter((v) => {
+            return v.isbn !== redBook.isbn;
+          });
+          //強制的に再描画させるための処理（非推奨なためできれば修正）
+          this.redBookListKey += 1;
+          this.bookListKey += 1;
+        } else {
+          //エラーしたら処理中止するフィードバック考える
+          return;
+        }
+      });
   }
   addBook(book: Book) {
     //本を検索して決定した時に呼び出し
