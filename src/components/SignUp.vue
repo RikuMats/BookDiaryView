@@ -53,15 +53,48 @@ export default class SignUp extends Vue {
   ];
 
   signUp() {
+    let isVerified = false;
+    let sendData = {
+      password: this.password,
+      userName: this.userName,
+      email: this.email,
+    };
     if (this.valid) {
-      //サーバーにユーザ名 とパスワード とメールを送りidをもらう
-      let userId = "aa";
-      if (userId) {
-        this.$router.push({
-          name: "verification",
-          params: { id: userId },
+      //サーバーにuserId とパスワード
+      fetch("http://localhost:8080/signUp.php", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(sendData),
+      })
+        .then((response) => {
+          console.log(response);
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          return response.json();
+        })
+        .catch((error) => {
+          console.error("エラーが発生しました", error);
+        })
+        .then((apiData) => {
+          console.log("data!");
+          console.log(apiData);
+          isVerified = apiData["isVerified"];
+          if (isVerified) {
+            //サーバーにユーザ名 とパスワード とメールを送りidをもらう
+            let userId = apiData["userId"];
+            let token = apiData["token"];
+            window.sessionStorage.setItem("token", token);
+
+            this.$router.push({
+              name: "verification",
+              params: { id: userId },
+            });
+          }
         });
-      }
     }
   }
 }

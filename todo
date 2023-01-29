@@ -1,7 +1,5 @@
 ## doing
-- register new book
-閉じるように
-- red book
+- signUp
 ## todo
 - add bookでデータベースにうまくくわえられなかったときのフィードバックを考える
 - component layout
