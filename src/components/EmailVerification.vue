@@ -34,15 +34,44 @@ export default class EmailVerification extends Vue {
   @Prop()
   private id!: string;
   verification() {
+    let isVerified = false;
+    let token = window.sessionStorage.getItem("token");
+    let sendData = {
+      token: token,
+      userId: this.id,
+      verificationCode: this.verificationCode,
+    };
     if (this.valid) {
-      //サーバにidとverificationCodeを送り問題ないか結果をもらう
-      let valid = true;
-      if (valid) {
-        this.$router.push({
-          name: "ok",
-          params: { id: this.id },
+      //サーバーにuserId とパスワード
+      fetch("http://localhost:8080/verification.php", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(sendData),
+      })
+        .then((response) => {
+          console.log(response);
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          return response.json();
+        })
+        .catch((error) => {
+          console.error("エラーが発生しました", error);
+        })
+        .then((apiData) => {
+          console.log("data!");
+          console.log(apiData);
+          isVerified = apiData["isVerified"];
+          if (isVerified) {
+            this.$router.push({
+              name: "ok",
+              params: { id: this.id },
+            });
+          }
         });
-      }
     }
   }
 }
