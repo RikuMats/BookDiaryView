@@ -25,7 +25,7 @@ import { Component, Vue, Prop } from "vue-property-decorator";
 @Component
 export default class EmailVerification extends Vue {
   private valid = false;
-  private verificationCode = "";
+  private verificationCode = "code00";
   private verificationCodeRules = [
     (v: string) => !!v || "verification code is required",
     (v: string) =>
