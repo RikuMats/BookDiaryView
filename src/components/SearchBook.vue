@@ -109,7 +109,9 @@ export default class SearchBook extends Vue {
           if (identifiers.length < 1) {
             continue;
           }
-          let isbn13 = bookInfo["industryIdentifiers"][1]["identifier"];
+          let index =
+            bookInfo["industryIdentifiers"][0]["type"] == "ISBN_13" ? 0 : 1;
+          let isbn13 = bookInfo["industryIdentifiers"][index]["identifier"];
           this.resultList.push(new Book(isbn13, title, author, img_url));
         }
       });
