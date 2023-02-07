@@ -6,7 +6,7 @@
         <v-text-field
           v-model="userId"
           :rules="userIdRules"
-          :counter="6"
+          :counter="12"
           label="user id"
           required
         ></v-text-field>
@@ -36,7 +36,7 @@ export default class SignIn extends Vue {
   private password = "";
   private userIdRules = [
     (v: string) => !!v || "user id is required",
-    (v: string) => v.length <= 6 || "user id must be less than 6 characters",
+    (v: string) => v.length <= 12 || "user id must be less than 6 characters",
   ];
   private passwordRules = [
     (v: string) => !!v || "password is required",
