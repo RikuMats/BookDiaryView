@@ -1,11 +1,12 @@
 # book_diary_view
-
+This is the frontend of book diary project.
+The backend is [this](https://github.com/RikuMats/book_diary_with_docker) 
 ## How to use
 1. sign in (any id and any password)
 2. add new book
 3. write impression
 
-[demo page](https://rikumats.github.io/book_dialy_view)
+[demo page](https://rikumats.github.io/book_diary_view)
 
 
 ## Project setup
