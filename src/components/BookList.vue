@@ -46,6 +46,13 @@
             <v-btn color="deep-purple lighten-2" text @click="save">
               save
             </v-btn>
+            <v-btn
+              color="deep-purple lighten-2"
+              text
+              @click="impressionWritingDialog = false"
+            >
+              cancel
+            </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
